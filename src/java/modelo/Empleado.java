@@ -33,7 +33,9 @@ public class Empleado extends Persona {
   public void setIdPuesto(int id_puesto) { this.id_puesto = id_puesto; }
   
   @Override
-  public void agregar() {
+  public int agregar() {
+    int retorno = 0;
+    
     try {
       String campos = "(codigo, nombres, apellidos, direccion, telefono, fecha_nacimiento, id_puesto)";
       String query = "INSERT INTO empleados" + campos + " VALUES(?, ?, ?, ?, ?, ?, ?);";
@@ -49,13 +51,17 @@ public class Empleado extends Persona {
       parametro.setString(5, getTelefono());
       parametro.setString(6, getFechaNacimiento());
       parametro.setInt(7, getIdPuesto());
-      parametro.executeUpdate();
+      
+      retorno = parametro.executeUpdate();
       
       cn.cerrar_conexion();
       
     } catch (Exception ex) {
       System.out.println(ex.getMessage());
+      retorno = 0;
     }
+    
+    return retorno;
   }
   
 }

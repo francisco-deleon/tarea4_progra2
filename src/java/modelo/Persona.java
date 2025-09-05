@@ -47,12 +47,10 @@ abstract class Persona {
 
   public void setFechaNacimiento(String fecha_nacimiento) { this.fecha_nacimiento = fecha_nacimiento; }
   
-  public void agregar() {}
+  public int agregar() { return 0; }
   
-  public void modificar() {}
+  public int modificar() { return 0; }
   
-  public void eliminar() {}
-  
-  public void mostrar() {}
+  public int eliminar() { return 0; }
   
 }

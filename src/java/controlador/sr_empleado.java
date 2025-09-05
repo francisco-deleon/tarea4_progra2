@@ -22,7 +22,6 @@ public class sr_empleado extends HttpServlet {
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
     try (PrintWriter out = response.getWriter()) {
-      /* TODO output your page here. You may use following sample code. */
       out.println("<!DOCTYPE html>");
       out.println("<html>");
       out.println("<head>");
@@ -30,19 +29,25 @@ public class sr_empleado extends HttpServlet {
       out.println("</head>");
       out.println("<body>");
       
-      empleado = new Empleado(
-        0,
-        request.getParameter("txt_nombres"),
-        request.getParameter("txt_apellidos"),
-        request.getParameter("txt_direccion"),
-        request.getParameter("txt_telefono"),
-        request.getParameter("txt_fn"),
-        request.getParameter("txt_codigo"),
-        Integer.parseInt(request.getParameter("drop_puesto"))
-      );
+      if("agregar".equals(request.getParameter("btn_agregar"))) {
+        empleado = new Empleado(
+          0,
+          request.getParameter("txt_nombres"),
+          request.getParameter("txt_apellidos"),
+          request.getParameter("txt_direccion"),
+          request.getParameter("txt_telefono"),
+          request.getParameter("txt_fn"),
+          request.getParameter("txt_codigo"),
+          Integer.parseInt(request.getParameter("drop_puesto"))
+        );
       
-      empleado.agregar();
-      out.println("<h1>Ingreso Exitoso</h1>");
+        if(empleado.agregar() > 0) {
+          out.println("<h1>Ingreso Exitoso</h1>");
+          out.println("<a href='index.jsp'>Regresar</a>");
+        } else {
+          out.println("<h1>Error..................</h1>");
+        }
+      }
       
       out.println("</body>");
       out.println("</html>");
