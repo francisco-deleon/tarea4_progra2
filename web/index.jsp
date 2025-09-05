@@ -5,7 +5,8 @@
     Autor: Francisco Antonio De León Natareno
     Documento: index.jsp
 --%>
-
+<%@page import="modelo.Empleado" %>
+<%@page import="java.util.HashMap" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,11 +32,16 @@
         <input type="number" name="txt_telefono" id="txt_telefono" class="form-control" placeholder="Ejemplo: # 12345678" required>
         <label for="txt_fn"><b>Fecha Nacimiento:</b></label>
         <input type="date" name="txt_fn" id="txt_fn" class="form-control" required>
-        <label for="drop_sangre"><b>Tipo de Sangre:</b></label>
-        <select name="drop_sangre" id="drop_sangre" class="form-control">
-          <option value="1">Opcion 1</option>
-          <option value="2">Opcion 2</option>
-          <option value="3">Opcion 3</option>
+        <label for="drop_puesto"><b>Puesto:</b></label>
+        <select name="drop_puesto" id="drop_puesto" class="form-control">
+        <%
+          Empleado empleado = new Empleado();
+          HashMap<String, String> drop = empleado.dropPuesto();
+
+          for(String i: drop.keySet()) {
+            out.println("<option value='"+ i +"'>" + drop.get(i) + "</option>");
+          }
+        %>
         </select>
         <br>
         <button type="button" name="btn_agregar" id="btn_agregar" class="btn btn-outline-success btn-lg">Agregar</button>
