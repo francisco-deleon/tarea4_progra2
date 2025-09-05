@@ -43,9 +43,9 @@ abstract class Persona {
 
   public void setTelefono(String telefono) { this.telefono = telefono; }
 
-  public String getFecha_nacimiento() { return fecha_nacimiento; }
+  public String getFechaNacimiento() { return fecha_nacimiento; }
 
-  public void setFecha_nacimiento(String fecha_nacimiento) { this.fecha_nacimiento = fecha_nacimiento; }
+  public void setFechaNacimiento(String fecha_nacimiento) { this.fecha_nacimiento = fecha_nacimiento; }
   
   public void agregar() {}
   
