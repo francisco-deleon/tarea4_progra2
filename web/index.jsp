@@ -19,7 +19,7 @@
   <body>
     <h1>Formulario Empleados</h1>
     <div class="container">
-      <form action="" method="POST" class="form-group">
+      <form action="sr_empleado" method="POST" class="form-group">
         <label for="txt_codigo"><b>Codigo:</b></label>
         <input type="text" name="txt_codigo" id="txt_codigo" class="form-control" placeholder="Ejemplo: E001" required>
         <label for="txt_nombres"><b>Nombres:</b></label>
@@ -44,7 +44,7 @@
         %>
         </select>
         <br>
-        <button type="button" name="btn_agregar" id="btn_agregar" class="btn btn-outline-success btn-lg">Agregar</button>
+        <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-outline-success btn-lg">Agregar</button>
           
       </form>
         
