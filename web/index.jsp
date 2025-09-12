@@ -6,7 +6,9 @@
     Documento: index.jsp
 --%>
 <%@page import="modelo.Puesto" %>
+<%@page import="modelo.Empleado" %>
 <%@page import="java.util.HashMap" %>
+<%@page import="javax.swing.table.DefaultTableModel" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -48,6 +50,42 @@
         <button name="btn_modificar" id="btn_modificar" value="modificar" class="btn btn-outline-warning btn-lg">Modificar</button>
           
       </form>
+      <br>
+        
+      <table class="table table-hover table-bordered text-center">
+        <thead class="table-dark">
+          <tr>
+            <th>Codigo</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Nacimiento</th>
+            <th>Puesto</th>
+          </tr>
+        </thead>
+        <tbody id="tbl_empleados">
+         <%
+           DefaultTableModel tabla = new DefaultTableModel();
+           Empleado empleado = new Empleado();
+           
+           tabla = empleado.leer();
+           
+           for(int t=0; t<tabla.getRowCount(); t++) {
+            out.println("<tr data-id=" + tabla.getValueAt(t, 0) + " data-id_p=" + tabla.getValueAt(t, 8) + ">");
+            out.println("<td>" + tabla.getValueAt(t, 1) + "</td>");
+            out.println("<td>" + tabla.getValueAt(t, 2) + "</td>");
+            out.println("<td>" + tabla.getValueAt(t, 3) + "</td>");
+            out.println("<td>" + tabla.getValueAt(t, 4) + "</td>");
+            out.println("<td>" + tabla.getValueAt(t, 5) + "</td>");
+            out.println("<td>" + tabla.getValueAt(t, 6) + "</td>");
+            out.println("<td>" + tabla.getValueAt(t, 7) + "</td>");
+            out.println("</tr>");
+           }
+           
+         %>
+        </tbody>
+      </table>
         
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

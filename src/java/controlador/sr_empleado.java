@@ -42,8 +42,7 @@ public class sr_empleado extends HttpServlet {
         );
       
         if(empleado.agregar() > 0) {
-          out.println("<h1>Ingreso Exitoso</h1>");
-          out.println("<a href='index.jsp'>Regresar</a>");
+          response.sendRedirect("index.jsp");
         } else {
           out.println("<h1>Error..................</h1>");
         }

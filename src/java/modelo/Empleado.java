@@ -8,8 +8,9 @@
 
 package modelo;
 
-import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class Empleado extends Persona {
   private String codigo;
@@ -62,6 +63,44 @@ public class Empleado extends Persona {
     }
     
     return retorno;
+  }
+  
+  public DefaultTableModel leer() {
+    DefaultTableModel tabla = new DefaultTableModel();
+    
+    try {
+      String campos = "e.id_empleado AS id, e.codigo, e.nombres, e.apellidos, e.direccion, e.telefono, e.fecha_nacimiento, p.puesto, p.id_puesto";
+      String query = "SELECT " + campos + " FROM empleados AS e INNER JOIN puestos AS p ON e.id_puesto = p.id_puesto ORDER BY id ASC;";
+      cn = new Conexion();
+      cn.abrir_conexion();
+      
+      ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
+      
+      String encabezado[] = {"Id", "Codigo", "Nombres", "Apellidos", "Direccion", "Telefono", "Nacimiento", "Puesto", "id_puesto"};
+      tabla.setColumnIdentifiers(encabezado);
+      String datos[] = new String[9];
+      
+      while(consulta.next()){
+        datos[0] = consulta.getString("id");
+        datos[1] = consulta.getString("codigo");
+        datos[2] = consulta.getString("nombres");
+        datos[3] = consulta.getString("apellidos");
+        datos[4] = consulta.getString("direccion");
+        datos[5] = consulta.getString("telefono");
+        datos[6] = consulta.getString("fecha_nacimiento");
+        datos[7] = consulta.getString("puesto");
+        datos[8] = consulta.getString("id_puesto");
+        tabla.addRow(datos);
+    }
+      
+      
+      cn.cerrar_conexion();
+      
+    } catch (Exception ex) {
+      System.out.println(ex.getMessage());
+    }
+    
+    return tabla;
   }
   
 }
