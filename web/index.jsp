@@ -22,6 +22,8 @@
     <h1>Formulario Empleados</h1>
     <div class="container">
       <form action="sr_empleado" method="POST" class="form-group">
+        <label for="lbl_id"><b>ID:</b></label>
+        <input type="text" name="txt_id" id="txt_id" class="form-control-plaintext" readonly>
         <label for="txt_codigo"><b>Codigo:</b></label>
         <input type="text" name="txt_codigo" id="txt_codigo" class="form-control" placeholder="Ejemplo: E001" required>
         <label for="txt_nombres"><b>Nombres:</b></label>
@@ -92,5 +94,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $('#tbl_empleados').on('click', 'tr td', function(evt) {
+         let target, id, id_p, codigo, nombres, apellidos, direccion, telefono, nacimiento;
+         target = $(event.target);
+         
+         id_p = target.parent().data('id_p');
+         id = target.parent().data('id');
+         
+         codigo = target.parent("tr").find("td").eq(0).html();
+         nombres = target.parent("tr").find("td").eq(1).html();
+         apellidos = target.parent("tr").find("td").eq(2).html();
+         direccion = target.parent("tr").find("td").eq(3).html();
+         telefono = target.parent("tr").find("td").eq(4).html();
+         nacimiento = target.parent("tr").find("td").eq(5).html();
+         
+         $("#txt_id").val(id);
+         $("#txt_codigo").val(codigo);
+         $("#txt_nombres").val(nombres);
+         $("#txt_apellidos").val(apellidos);
+         $("#txt_direccion").val(direccion);
+         $("#txt_telefono").val(telefono);
+         $("#txt_fn").val(nacimiento);
+         $("#txt_id").val(id);
+         $("#drop_puesto").val(id_p);
+         
+      });
+    </script>
   </body>
 </html>
