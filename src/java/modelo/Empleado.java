@@ -103,4 +103,61 @@ public class Empleado extends Persona {
     return tabla;
   }
   
+  @Override
+  public int modificar() {
+    int retorno = 0;
+    
+    try {
+      String campos = "codigo=?, nombres=?, apellidos=?, direccion=?, telefono=?, fecha_nacimiento=?, id_puesto=?";
+      String query = "UPDATE empleados SET " + campos + " WHERE id_empleado = ?;";
+      PreparedStatement parametro;
+      cn = new Conexion();
+      
+      cn.abrir_conexion();
+      parametro = (PreparedStatement) cn.conexionBD.prepareStatement(query);
+      parametro.setString(1, getCodigo());
+      parametro.setString(2, getNombres());
+      parametro.setString(3, getApellidos());
+      parametro.setString(4, getDireccion());
+      parametro.setString(5, getTelefono());
+      parametro.setString(6, getFechaNacimiento());
+      parametro.setInt(7, getIdPuesto());
+      parametro.setInt(8, getId());
+      
+      retorno = parametro.executeUpdate();
+      
+      cn.cerrar_conexion();
+      
+    } catch (Exception ex) {
+      System.out.println(ex.getMessage());
+      retorno = 0;
+    }
+    
+    return retorno;
+  }
+  
+  @Override
+  public int eliminar() {
+    int retorno = 0;
+    
+    try {
+      String query = "DELETE FROM empleados WHERE id_empleado = ?;";
+      PreparedStatement parametro;
+      cn = new Conexion();
+      cn.abrir_conexion();
+      
+      parametro = (PreparedStatement) cn.conexionBD.prepareStatement(query);
+      parametro.setInt(1, getId());
+      
+      retorno = parametro.executeUpdate();
+      
+      cn.cerrar_conexion();
+
+    } catch(Exception ex) {
+      System.out.println("Error: " + ex.getMessage());
+    }
+    
+    return retorno;
+  }
+  
 }

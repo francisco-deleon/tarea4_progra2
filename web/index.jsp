@@ -23,7 +23,7 @@
     <div class="container">
       <form action="sr_empleado" method="POST" class="form-group">
         <label for="lbl_id"><b>ID:</b></label>
-        <input type="text" name="txt_id" id="txt_id" class="form-control-plaintext" readonly>
+        <input type="text" name="txt_id" id="txt_id" class="form-control-plaintext" value="0" readonly>
         <label for="txt_codigo"><b>Codigo:</b></label>
         <input type="text" name="txt_codigo" id="txt_codigo" class="form-control" placeholder="Ejemplo: E001" required>
         <label for="txt_nombres"><b>Nombres:</b></label>
@@ -48,8 +48,14 @@
         %>
         </select>
         <br>
+        <!--  
         <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-outline-success btn-lg">Agregar</button>
         <button name="btn_modificar" id="btn_modificar" value="modificar" class="btn btn-outline-warning btn-lg">Modificar</button>
+        <button name="btn_eliminar" id="btn_eliminar" value="eliminar" class="btn btn-outline-danger btn-lg">Eliminar</button>
+        -->
+        <button name="btn_accion" id="btn_agregar" value="agregar" class="btn btn-outline-success btn-lg">Agregar</button>
+        <button name="btn_accion" id="btn_modificar" value="modificar" class="btn btn-outline-warning btn-lg">Modificar</button>
+        <button name="btn_accion" id="btn_eliminar" value="eliminar" class="btn btn-outline-danger btn-lg">Eliminar</button>
           
       </form>
       <br>

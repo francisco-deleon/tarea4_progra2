@@ -29,9 +29,8 @@ public class sr_empleado extends HttpServlet {
       out.println("</head>");
       out.println("<body>");
       
-      if("agregar".equals(request.getParameter("btn_agregar"))) {
-        empleado = new Empleado(
-          0,
+      empleado = new Empleado(
+          Integer.parseInt(request.getParameter("txt_id")),
           request.getParameter("txt_nombres"),
           request.getParameter("txt_apellidos"),
           request.getParameter("txt_direccion"),
@@ -41,11 +40,64 @@ public class sr_empleado extends HttpServlet {
           Integer.parseInt(request.getParameter("drop_puesto"))
         );
       
+      // Variable que almacena el valor del boton presionado
+      String btn_accion = request.getParameter("btn_accion");
+      
+      /*
+      // Boton "agregar"
+      if("agregar".equals(request.getParameter("btn_agregar"))) {
         if(empleado.agregar() > 0) {
           response.sendRedirect("index.jsp");
         } else {
-          out.println("<h1>Error..................</h1>");
+          out.println("<h1>No se Agrego..................</h1>");
         }
+      }
+      // Boton "modificar"
+      else if ("modificar".equals(request.getParameter("btn_modificar"))) {
+        if(empleado.modificar() > 0) {
+          response.sendRedirect("index.jsp");
+        } else {
+          out.println("<h1>No se Modifico..................</h1>");
+        }
+      }
+      // Boton "eliminar"
+      else if ("eliminar".equals(request.getParameter("btn_eliminar"))) {
+        if(empleado.eliminar() > 0) {
+          response.sendRedirect("index.jsp");
+        } else {
+          out.println("<h1>No se Elimino..................</h1>");
+        }
+      }
+      */
+      
+      // Switch case basado en el valor del boton presionado
+      switch (btn_accion) {
+        case "agregar": // Boton "agregar"
+          if(empleado.agregar() > 0) {
+            response.sendRedirect("index.jsp");
+          } else {
+            out.println("<h1>No se Agrego..................</h1>");
+          }
+          
+          break;
+        
+        case "modificar": // Boton "modificar"
+          if(empleado.modificar() > 0) {
+            response.sendRedirect("index.jsp");
+          } else {
+            out.println("<h1>No se Modifico..................</h1>");
+          }
+          
+          break;
+        
+        case "eliminar": // Boton "eliminar"
+          if(empleado.eliminar() > 0) {
+            response.sendRedirect("index.jsp");
+          } else {
+            out.println("<h1>No se Elimino..................</h1>");
+          }
+          
+          break;
       }
       
       out.println("</body>");
